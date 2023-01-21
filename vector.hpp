@@ -2,6 +2,7 @@
 #define _VECTOR_H
 
 #include <cstddef>
+#include <initializer_list>
 #include <iostream>
 
 
@@ -19,7 +20,7 @@ class Vector {
 		if (l_size < p_size) { return; }
 		T* old_data = this->data;
 		this->p_size *= 2;
-		this->data = new T[this->p_size];
+		this->init();
 		memcpy(this->data, old_data, p_size / 2 * sizeof(T));
 		delete[] old_data;
 	}
@@ -27,17 +28,32 @@ class Vector {
 
 public:
 
-	// Constructor
+	// Member Function
 	
 	Vector() { this->init(); }
-
-
+	Vector(T value, int x) { 
+		this->init();
+		for (int i=0; i<x; i++) this->push_back(value);
+	}
+	explicit Vector(std::initializer_list<T> args) {
+		this->init();
+		for (auto arg : args) this->push_back(arg);
+	}
 	
+
 	~Vector() { delete[] this->data; }
 
 
 
 	// Modifiers
+
+	void clear();
+
+	void insert();
+
+	void emplace();
+
+	void erase();
 
 	void push_back(T s) {
 		this->extend();
@@ -45,7 +61,13 @@ public:
 		(this->l_size)++;
 	}
 
+	void emplace_back();
+
 	void pop_back() { (this->l_size)--; }
+
+	void resize();
+
+	void swap();
 
 
 
@@ -70,6 +92,7 @@ public:
 
 
 	// Iterators
+
 	
 
 
