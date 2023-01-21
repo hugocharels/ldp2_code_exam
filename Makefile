@@ -1,3 +1,4 @@
+COMPILER = g++-10
 FLAGS = -std=c++20
 
 
@@ -7,13 +8,13 @@ main:
 	make lifetime
 
 range: range.cpp range.hpp
-	g++ -o range range.cpp ${FLAGS}
+	${COMPILER} -o range range.cpp ${FLAGS}
 
 virtual: virtual.cpp
-	g++ -o virtual virtual.cpp ${FLAG}
+	${COMPILER} -o virtual virtual.cpp ${FLAG}
 
 lifetime: lifetime.cpp
-	g++ -o lifetime lifetime.cpp ${FLAGS}
+	${COMPILER} -o lifetime lifetime.cpp ${FLAGS}
 
 
 rm:
