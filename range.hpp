@@ -23,7 +23,8 @@ class Range {
 
 		T &operator*() { return index; }
 		
-		Iterator &operator++() { 
+		Iterator &operator++() {
+			// to not exceed the stop value
 			if ((index < stop && index + step <= stop) 
 			 or (index > stop && index + step >= stop))
 			{ index += step; } else { index = stop; }
@@ -37,19 +38,19 @@ class Range {
 
 public:
 
-	Range(T end):stop{end} {}
+	Range(T stop):stop{stop} {}
 
-	Range(T start, T end):start{start},stop{end} {
-		assert(start < end && "error : the begin value should be lesser than the end value");
+	Range(T start, T stop):start{start},stop{stop} {
+		assert(start < stop && "error : the begin value should be lesser than the end value");
 	}
 
-	Range(T start, T end, T step):start{start},stop{end},step{step} {
-		if ( start < end ) {
+	Range(T start, T stop, T step):start{start},stop{stop},step{step} {
+		if ( start < stop ) {
 			assert(step > 0 && "error : the step value should be positive");
-		} else if ( start > end ) {
+		} else if ( start > stop ) {
 			assert( step < 0 && "error : the step value should be negative");
 		} else {
-			assert (start == end && "error : the start can't be equal to the end");
+			assert (start == stop && "error : the start can't be equal to the end");
 		}
 		assert(step != 0 && "error : the step can't be 0");
 	}
