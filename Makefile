@@ -6,6 +6,7 @@ main:
 	make range
 	make virtual
 	make lifetime
+	make explicit || echo ""
 
 range: range.cpp range.hpp
 	${COMPILER} -o range range.cpp ${FLAGS}
@@ -15,6 +16,9 @@ virtual: virtual.cpp
 
 lifetime: lifetime.cpp
 	${COMPILER} -o lifetime lifetime.cpp ${FLAGS}
+
+explicit: explicit.cpp
+	${COMPILER} -o explicit explicit.cpp ${FLAGS}
 
 
 rm:
