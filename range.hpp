@@ -15,14 +15,21 @@ class Range {
 
 		T index;
 		T step;
+		T stop;
 
 	public:
 
-		Iterator(T index, T step):index{index},step{step} {}
+		Iterator(T index, T step, T stop):index{index},step{step},stop{stop} {}
 
 		T &operator*() { return index; }
 		
-		Iterator &operator++() { this->index += this->step; return *this; }
+		Iterator &operator++() { 
+			if ((index < stop && index + step <= stop) 
+			 or (index > stop && index + step >= stop))
+			{ index += step; } else { index = stop; }
+			return *this;
+		}
+
 		auto operator<=>(const Iterator& other) const { return this->index <=> other.index; }
 		bool operator==(const Iterator& other) const { return this->index == other.index; }
 		bool operator!=(const Iterator& other) const { return not (*this == other); }
@@ -37,13 +44,18 @@ public:
 	}
 
 	Range(T start, T end, T step):start{start},stop{end},step{step} {
-		if (step > 0) {assert(start < end && "error : the begin value should be lesser than the end value");}
-		else if (step < 0) {assert(start > end && "error : the begin value should be greater than the end value");}
-		else {assert(step != 0 && "error : the step can't be 0");}
+		if ( start < end ) {
+			assert(step > 0 && "error : the step value should be positive");
+		} else if ( start > end ) {
+			assert( step < 0 && "error : the step value should be negative");
+		} else {
+			assert (start == end && "error : the start can't be equal to the end");
+		}
+		assert(step != 0 && "error : the step can't be 0");
 	}
 
-	Iterator begin() const { return Iterator(start, step); }
-	Iterator end() const { return Iterator(stop, step); }
+	Iterator begin() const { return Iterator(start, step, stop); }
+	Iterator end() const { return Iterator(stop, step, stop); }
 
 };
 
