@@ -7,13 +7,11 @@
 #include <iostream>
 
 
-
-
 template <typename T>
 class Vector {
 
 	T* data;
-	size_t p_size=2;
+	size_t p_size;
 	size_t l_size=0;
 
 
@@ -60,6 +58,15 @@ class Vector {
 	}
 
 
+	void copy(const Vector<T> &other) {
+		this->p_size = other.size();
+		this->alloc();
+		for (const auto elem : other) {
+			this->push_back(elem);
+		}
+	}
+
+
 public:
 
 	// Member Function
@@ -75,7 +82,16 @@ public:
 		this->alloc();
 		for (auto arg : args) this->push_back(arg);
 	}
-	
+	Vector(const Vector<T> &other) {
+		this->copy(other);
+	}
+
+	Vector<T> &operator=(const Vector<T> &other) {
+		this->dealloc();
+		this->init();
+		this->copy(other);
+		return *this;
+	}
 
 	~Vector() { this->dealloc(); }
 
@@ -93,7 +109,7 @@ public:
 
 	void push_back(T elem) {
 		this->extend();
-		data[this->l_size] = elem;
+		this->data[this->l_size] = elem;
 		(this->l_size)++;
 	}
 
