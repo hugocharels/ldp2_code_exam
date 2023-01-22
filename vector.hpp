@@ -37,7 +37,7 @@ public:
 
 	// Member Function
 	
-	Vector() { this->init(); }
+	Vector() { this->init(); this->alloc(); }
 	Vector(T value, int x) { 
 		this->init();
 		for (int i=0; i<x; i++) this->push_back(value);
