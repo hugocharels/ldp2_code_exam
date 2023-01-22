@@ -18,13 +18,18 @@ class Vector {
 	void alloc() { this->data = new T[this->p_size]; }
 	void dealloc() { delete[] this->data; }
 
+	void realloc(size_t new_size) {
+		T* old_data = this->data;
+		size_t old_size = this->p_size;
+		this->p_size = new_size;
+		this->alloc();
+		memcpy(this->data, old_data, old_size * sizeof(T));
+		delete[] old_data;
+	}
+
 	void extend() {
 		if (l_size < p_size) { return; }
-		T* old_data = this->data;
-		this->p_size *= 2;
-		this->alloc();
-		memcpy(this->data, old_data, p_size / 2 * sizeof(T));
-		delete[] old_data;
+		this->realloc(this->p_size * 2);
 	}
 
 
@@ -55,10 +60,6 @@ public:
 		this->alloc();
 	}
 	
-	void insert();
-
-	void emplace();
-
 	void erase();
 
 	void push_back(T elem) {
@@ -71,7 +72,10 @@ public:
 
 	void pop_back() { (this->l_size)--; }
 
-	void resize();
+	void resize(size_t new_size) {
+		if (new_size < this->l_size) { perror("Too many element for resize"); }
+		else { this->realloc(new_size); }
+	}
 
 	void swap();
 
