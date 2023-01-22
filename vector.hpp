@@ -27,7 +27,10 @@ class Vector {
 	public:
 	
 		Iterator(T* start, size_t idx): start{start}, idx{idx} {}	
+		
+		T &operator*() { return this->start[idx]; }
 		Iterator &operator++() { this->idx++; return *this; }
+		Iterator &operator--() { this->idx--; return *this; }
 		
 		auto operator<=>(const Iterator& other) const { return this->idx <=> other.idx; }
 		bool operator==(const Iterator& other) const { return this->idx == other.idx; }
