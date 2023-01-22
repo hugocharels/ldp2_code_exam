@@ -1,5 +1,5 @@
-#ifndef _VECTOR_H
-#define _VECTOR_H
+#ifndef _VECTOR_HPP
+#define _VECTOR_HPP
 
 #include <cstddef>
 #include <initializer_list>
@@ -13,14 +13,16 @@ class Vector {
 	size_t p_size=2;
 	size_t l_size=0;
 
-	
-	void init() { this->data = new T[this->p_size]; }
+
+	void init() { this->p_size=2; this->l_size=0; }
+	void alloc() { this->data = new T[this->p_size]; }
+	void dealloc() { delete[] this->data; }
 
 	void extend() {
 		if (l_size < p_size) { return; }
 		T* old_data = this->data;
 		this->p_size *= 2;
-		this->init();
+		this->alloc();
 		memcpy(this->data, old_data, p_size / 2 * sizeof(T));
 		delete[] old_data;
 	}
@@ -41,27 +43,31 @@ public:
 	}
 	
 
-	~Vector() { delete[] this->data; }
+	~Vector() { this->dealloc(); }
 
 
 
 	// Modifiers
 
-	void clear();
-
+	void clear() {
+		this->dealloc();
+		this->init();
+		this->alloc();
+	}
+	
 	void insert();
 
 	void emplace();
 
 	void erase();
 
-	void push_back(T s) {
+	void push_back(T elem) {
 		this->extend();
-		data[this->l_size] = s;
+		data[this->l_size] = elem;
 		(this->l_size)++;
 	}
 
-	void emplace_back();
+	void emplace_back() { this->push_back(T{}); }
 
 	void pop_back() { (this->l_size)--; }
 
