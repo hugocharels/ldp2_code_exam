@@ -8,7 +8,7 @@ class IntInp {
 public:
 
 	IntInp(int a):a{a} {
-		std::cout << "it's explicit" << std::endl;
+		std::cout << "it's not explicit" << std::endl;
 	}
 
 };
