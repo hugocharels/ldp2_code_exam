@@ -3,7 +3,10 @@
 
 #include <cstddef>
 #include <initializer_list>
+#include <cstring>
 #include <iostream>
+
+
 
 
 template <typename T>
@@ -13,6 +16,27 @@ class Vector {
 	size_t p_size=2;
 	size_t l_size=0;
 
+
+	// Class Iterator
+	
+	class Iterator {
+			
+		T* start;
+		size_t idx;
+
+	public:
+	
+		Iterator(T* start, size_t idx): start{start}, idx{idx} {}	
+		Iterator &operator++() { this->idx++; return *this; }
+		
+		auto operator<=>(const Iterator& other) const { return this->idx <=> other.idx; }
+		bool operator==(const Iterator& other) const { return this->idx == other.idx; }
+		bool operator!=(const Iterator& other) const { return this->idx != other.idx; }
+
+	};
+
+
+	// Private methods
 
 	void init() { this->p_size=2; this->l_size=0; }
 	void alloc() { this->data = new T[this->p_size]; }
@@ -40,10 +64,12 @@ public:
 	Vector() { this->init(); this->alloc(); }
 	Vector(T value, int x) { 
 		this->init();
+		this->alloc();
 		for (int i=0; i<x; i++) this->push_back(value);
 	}
 	explicit Vector(std::initializer_list<T> args) {
 		this->init();
+		this->alloc();
 		for (auto arg : args) this->push_back(arg);
 	}
 	
@@ -103,8 +129,11 @@ public:
 
 	// Iterators
 
+	Iterator begin() const { return Iterator(this->data, 0); }
+	Iterator end()   const { return Iterator(this->data, this->l_size-1); }
 	
-
+	Iterator rbegin() const { return Iterator(this->data, this->l_size-1); }
+	Iterator rend() const { return Iterator(this->data, 0); }
 
 	// Capacity
 	
@@ -112,6 +141,17 @@ public:
 	size_t size() const { return this->l_size; }
 	size_t capacity() const { return this->p_size; }
 
+
+	// Debug
+	
+
+	void print() {
+		std::cout << "[";
+		if (this->l_size == 0) { std::cout << "]"; return; }
+		for (unsigned i=0; i<this->l_size-1; i++) {
+			std::cout << this->data[i] << ", ";
+		} std::cout << this->data[this->l_size-1] << "]" << std::endl;
+	}
 
 };
 
