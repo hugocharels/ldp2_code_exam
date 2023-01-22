@@ -96,7 +96,6 @@ public:
 	~Vector() { this->dealloc(); }
 
 
-
 	// Modifiers
 
 	void clear() {
@@ -122,9 +121,6 @@ public:
 		else { this->realloc(new_size); }
 	}
 
-	void swap();
-
-
 
 	// Element access
 
@@ -145,7 +141,6 @@ public:
 	const T& back() const { return this->data[this->l_size-1]; }
 
 
-
 	// Iterators
 
 	Iterator begin() const { return Iterator(this->data, 0); }
@@ -154,6 +149,7 @@ public:
 	Iterator rbegin() const { return Iterator(this->data, this->l_size-1); }
 	Iterator rend() const { return Iterator(this->data, -1); }
 
+
 	// Capacity
 	
 	bool empty() const { return this->l_size == 0; }
@@ -161,8 +157,7 @@ public:
 	size_t capacity() const { return this->p_size; }
 
 
-	// Debug
-	
+	// Debug	
 
 	void print() const {
 		std::cout << "[";
