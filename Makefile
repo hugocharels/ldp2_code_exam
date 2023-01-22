@@ -1,6 +1,5 @@
 COMPILER = g++-10
-FLAGS = -std=c++20
-
+FLAGS = -std=c++20 -Wall -Wextra -Wpedantic 
 
 main:
 	make range
@@ -27,4 +26,4 @@ vector: vector.cpp
 
 
 rm:
-	rm range virtual lifetime
+	rm range virtual lifetime vector
