@@ -133,10 +133,10 @@ public:
 	// Iterators
 
 	Iterator begin() const { return Iterator(this->data, 0); }
-	Iterator end()   const { return Iterator(this->data, this->l_size-1); }
+	Iterator end()   const { return Iterator(this->data, this->l_size); }
 	
 	Iterator rbegin() const { return Iterator(this->data, this->l_size-1); }
-	Iterator rend() const { return Iterator(this->data, 0); }
+	Iterator rend() const { return Iterator(this->data, -1); }
 
 	// Capacity
 	
@@ -148,7 +148,7 @@ public:
 	// Debug
 	
 
-	void print() {
+	void print() const {
 		std::cout << "[";
 		if (this->l_size == 0) { std::cout << "]"; return; }
 		for (unsigned i=0; i<this->l_size-1; i++) {

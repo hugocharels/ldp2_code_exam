@@ -24,7 +24,7 @@ int main() {
 		std::cout << i << " ";
 	} std::cout << std::endl;
 
-	for (auto i = v2.rbegin(); i > v2.rend(); --i) {
+	for (auto i = v2.rbegin(); i != v2.rend(); --i) {
 		std::cout << *i << " ";
 	} std::cout << std::endl;
 
