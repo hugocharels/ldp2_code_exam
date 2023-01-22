@@ -28,9 +28,16 @@ int main() {
 		std::cout << *i << " ";
 	} std::cout << std::endl;
 
-
-
 	std::cout << "owo" << std::endl;
+
+	Vector<int> v3{v1};
+	v3[0] = 52;
+	v1.print();
+	v3.print();
+
+	v3 = v2;
+
+	v3.print();
 
 	return 0;
 }
