@@ -7,7 +7,10 @@ int main() {
 
 	Array<int, 5> owo = uwu;
 
-	std::cout << owo[0] << std::endl;
+	owo.print();
+
+	uwu[2] = 15;
+	uwu.print();
 
 	return 0;
 }
