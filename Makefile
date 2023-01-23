@@ -5,8 +5,8 @@ main:
 	make range
 	make virtual
 	make lifetime
-	make explicit || echo ""
 	make vector
+	make array
 
 
 range: range.cpp range.hpp
@@ -17,9 +17,6 @@ virtual: virtual.cpp
 
 lifetime: lifetime.cpp
 	${COMPILER} -o lifetime lifetime.cpp ${FLAGS}
-
-explicit: explicit.cpp
-	${COMPILER} -o explicit explicit.cpp ${FLAGS}
 
 vector: vector.cpp vector.hpp
 	${COMPILER} -o vector vector.cpp ${FLAGS}
