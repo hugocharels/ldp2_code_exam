@@ -21,9 +21,12 @@ lifetime: lifetime.cpp
 explicit: explicit.cpp
 	${COMPILER} -o explicit explicit.cpp ${FLAGS}
 
-vector: vector.cpp
+vector: vector.cpp vector.hpp
 	${COMPILER} -o vector vector.cpp ${FLAGS}
+
+array: array.cpp array.hpp
+	${COMPILER} -o array array.cpp ${FLAGS}
 
 
 rm:
-	rm range virtual lifetime vector
+	rm range virtual lifetime vector array
