@@ -15,15 +15,41 @@ class Array {
 		for ( int i=0; i<N; i++ ) { this->data[i] = other[i]; }
 	}
 
+
+	// Class Iterator
+	
+	class Iterator {
+			
+		T* start;
+		int idx;
+
+	public:
+	
+		Iterator(T* start, int idx): start{start}, idx{idx} {}	
+		
+		T &operator*() { return this->start[idx]; }
+		Iterator &operator++() { this->idx++; return *this; }
+		Iterator &operator--() { this->idx--; return *this; }
+		
+		Iterator &operator+(size_t val) { return Iterator(this->start, this->idx + val); }
+		Iterator &operator-(size_t val) { return Iterator(this->start, this->idx - val); }
+
+		auto operator<=>(const Iterator& other) const { return this->idx <=> other.idx; }
+		bool operator==(const Iterator& other) const { return this->idx == other.idx; }
+		bool operator!=(const Iterator& other) const { return this->idx != other.idx; }
+
+	};
+
+
 public:
 
 	// Member Function
 
 	constexpr Array()=default;
-	constexpr Array(T val) { 
+	constexpr explicit Array(T val) { 
 		for ( int i=0; i<N; i++ ) { data[i] = val; }
 	}
-	constexpr Array(std::initializer_list<T> args) {
+	constexpr explicit Array(std::initializer_list<T> args) {
 		if (args.size() > N) { perror("Too many arguments"); exit(1); }
 		if (args.size() < N) { perror("Arguments are missing"); exit(1); }
 		for ( int i=0; i<args.size(); i++ ) { data[i] = args[i]; }
@@ -45,6 +71,30 @@ public:
 	}
 	const T& operator[](int i) const { return data[i]; }
 
+
+	// Iterators
+
+	Iterator begin() const { return Iterator(this->data, 0); }
+	Iterator end()   const { return Iterator(this->data, this->l_size); }
+	
+	Iterator rbegin() const { return Iterator(this->data, this->l_size-1); }
+	Iterator rend() const { return Iterator(this->data, -1); }
+
+
+	// Capacity
+
+	int size() const { return N; }
+
+
+	// Debug
+
+	void print() const {
+		std::cout << "(";
+		if (N == 0) { std::cout << "]"; return; }
+		for (unsigned i=0; i<N-1; i++) {
+			std::cout << this->data[i] << ", ";
+		} std::cout << this->data[N-1] << ")" << std::endl;
+	}
 
 };
 
