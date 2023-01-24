@@ -27,4 +27,4 @@ array: array.cpp array.hpp
 
 
 rm:
-	rm range virtual virtual_heritence lifetime vector array
+	rm range virtual virtual_heritance lifetime vector array
