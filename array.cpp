@@ -12,6 +12,9 @@ int main() {
 	uwu[2] = 15;
 	uwu.print();
 
+	uwu = Array<int, 5>{1, 2, 3, 4, 5};
+	uwu.print();
+
 	return 0;
 }
 

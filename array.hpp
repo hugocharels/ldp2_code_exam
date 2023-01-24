@@ -5,14 +5,14 @@
 #include <initializer_list>
 
 
-template<typename T, const int N>
+template<typename T, const unsigned N>
 class Array {
 
 	T data[N];
 
 
 	void copy(const Array<T, N> &other) {
-		for ( int i=0; i<N; i++ ) { this->data[i] = other[i]; }
+		for ( unsigned i=0; i<N; i++ ) { this->data[i] = other[i]; }
 	}
 
 
@@ -47,15 +47,16 @@ public:
 
 	constexpr Array()=default;
 	constexpr explicit Array(T val) { 
-		for ( int i=0; i<N; i++ ) { data[i] = val; }
+		for ( unsigned i=0; i<N; i++ ) { data[i] = val; }
 	}
 	constexpr explicit Array(std::initializer_list<T> args) {
 		if (args.size() > N) { perror("Too many arguments"); exit(1); }
 		if (args.size() < N) { perror("Arguments are missing"); exit(1); }
-		for ( int i=0; i<args.size(); i++ ) { data[i] = args[i]; }
+		int i=0; for ( auto arg : args ) { data[i] = arg; i++; }
 	}
 	constexpr Array(const Array<T, N> &other) { this->copy(other); }
 	constexpr void operator=(const Array<T, N> &other) { this->copy(other); }
+
 
 	// Element access
 
