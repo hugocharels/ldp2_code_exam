@@ -102,10 +102,7 @@ public:
 		return new_vect;
 	}
 
-
-
 	~Vector() { this->dealloc(); }
-
 
 
 	// Modifiers
