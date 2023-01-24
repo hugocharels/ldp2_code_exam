@@ -12,8 +12,9 @@ main:
 range: range.cpp range.hpp
 	${COMPILER} -o range range.cpp ${FLAGS}
 
-virtual: virtual.cpp
+virtual: virtual.cpp virtual_heritence.cpp
 	${COMPILER} -o virtual virtual.cpp ${FLAG}
+	${COMPILER} -o virtual_heritence virtual_heritence.cpp ${FLAG}
 
 lifetime: lifetime.cpp
 	${COMPILER} -o lifetime lifetime.cpp ${FLAGS}
@@ -26,4 +27,4 @@ array: array.cpp array.hpp
 
 
 rm:
-	rm range virtual lifetime vector array
+	rm range virtual virtual_heritence lifetime vector array
