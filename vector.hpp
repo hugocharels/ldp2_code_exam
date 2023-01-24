@@ -96,7 +96,16 @@ public:
 		return *this;
 	}
 
+	Vector<T> operator+(const Vector<T> &other) {
+		Vector<T> new_vect{*this};
+		for ( auto elem : other ) { new_vect.push_back(elem); }
+		return new_vect;
+	}
+
+
+
 	~Vector() { this->dealloc(); }
+
 
 
 	// Modifiers
