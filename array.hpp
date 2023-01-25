@@ -35,7 +35,6 @@ class Array {
 		Iterator &operator-(int val) { return Iterator(this->start, this->idx - val); }
 
 		auto operator<=>(const Iterator& other) const { return this->idx <=> other.idx; }
-		bool operator==(const Iterator& other) const { return this->idx == other.idx; }
 		bool operator!=(const Iterator& other) const { return this->idx != other.idx; }
 
 	};
