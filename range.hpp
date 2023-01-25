@@ -25,15 +25,13 @@ class Range {
 		
 		Iterator &operator++() {
 			// to not exceed the stop value
-			if ((index < stop && index + step <= stop) 
-			 or (index > stop && index + step >= stop))
-			{ index += step; } else { index = stop; }
-			return *this;
+			if ((index < stop && index + step <= stop) or (index > stop && index + step >= stop)) {
+				index += step; } else { index = stop; 
+			} return *this;
 		}
 
 		auto operator<=>(const Iterator& other) const { return this->index <=> other.index; }
-		bool operator==(const Iterator& other) const { return this->index == other.index; }
-		bool operator!=(const Iterator& other) const { return not (*this == other); }
+		bool operator!=(const Iterator& other) const { return this->index != other.index; }
 	};
 
 public:

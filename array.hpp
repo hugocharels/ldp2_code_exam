@@ -78,7 +78,7 @@ public:
 	Iterator end()   const { return Iterator(this->data, this->l_size); }
 	
 	Iterator rbegin() const { return Iterator(this->data, this->l_size-1); }
-	Iterator rend() const { return Iterator(this->data, -1); }
+	Iterator rend()   const { return Iterator(this->data, -1); }
 
 
 	// Capacity

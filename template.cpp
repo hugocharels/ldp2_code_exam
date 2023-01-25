@@ -10,7 +10,7 @@ T add(const T a, const T b) {
 	return a + b;
 }
 
-template<>	// spécialisation
+template<>	// specialisation
 Number add(const Number a, const Number b) {
 	return Number{a.x + b.x}; 
 }
