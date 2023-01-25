@@ -30,7 +30,7 @@ public:
 int main() {
 
 	IntInp a{5};
-	IntInp b{5};
+	IntExp b{5};
 
 	IntInp c = 5;
 	IntExp d = 2; // no possible
