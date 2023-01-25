@@ -8,6 +8,8 @@ main:
 	make vector
 	make array
 	make template
+	make singleton
+	make decorator
 
 
 range: range.cpp range.hpp
@@ -32,6 +34,9 @@ template: template.cpp
 singleton: singleton.cpp
 	${COMPILER} -o singleton singleton.cpp ${FLAGS}
 
+decorator: decorator.cpp
+	${COMPILER} -o decorator decorator.cpp ${FLAGS}
+
 
 rm:
-	rm range virtual virtual_heritance lifetime vector array template singleton
+	rm range virtual virtual_heritance lifetime vector array template singleton decorator
