@@ -7,6 +7,7 @@ main:
 	make lifetime
 	make vector
 	make array
+	make template
 
 
 range: range.cpp range.hpp
@@ -25,6 +26,9 @@ vector: vector.cpp vector.hpp
 array: array.cpp array.hpp
 	${COMPILER} -o array array.cpp ${FLAGS}
 
+template: template.cpp
+	${COMPILER} -o template template.cpp ${FLAGS}
+
 
 rm:
-	rm range virtual virtual_heritance lifetime vector array
+	rm range virtual virtual_heritance lifetime vector array template
