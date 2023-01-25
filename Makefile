@@ -34,4 +34,4 @@ singleton: singleton.cpp
 
 
 rm:
-	rm range virtual virtual_heritance lifetime vector array template
+	rm range virtual virtual_heritance lifetime vector array template singleton
