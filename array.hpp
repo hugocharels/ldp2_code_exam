@@ -20,22 +20,41 @@ class Array {
 	
 	class Iterator {
 			
-		T* start;
-		int idx;
+		T* ptr;
 
 	public:
 	
-		Iterator(T* start, int idx): start{start}, idx{idx} {}	
-		
-		T &operator*() { return this->start[idx]; }
-		Iterator &operator++() { this->idx++; return *this; }
-		Iterator &operator--() { this->idx--; return *this; }
-		
-		Iterator operator+(int val) { return Iterator(this->start, this->idx + val); }
-		Iterator operator-(int val) { return Iterator(this->start, this->idx - val); }
+		Iterator(T* ptr): ptr{ptr} {}	
 
-		auto operator<=>(const Iterator& other) const { return this->idx <=> other.idx; }
-		bool operator!=(const Iterator& other) const { return this->idx != other.idx; }
+		T &operator*() { return *(this->ptr); }
+		Iterator &operator++() { this->ptr++; return *this; }
+		Iterator &operator--() { this->ptr--; return *this; }
+		
+		Iterator operator+(int val) const { return Iterator(this->ptr + val); }
+		Iterator operator-(int val) const { return Iterator(this->ptr - val); }
+
+		auto operator<=>(const Iterator& other) const { return this->ptr <=> other.ptr; }
+		bool operator!=(const Iterator& other) const { return this->ptr != other.ptr; }
+
+	};
+
+	class ConstIterator {
+			
+		T* ptr;
+
+	public:
+	
+		ConstIterator(T* ptr): ptr{ptr} {}	
+		
+		const T &operator*() const { return *(this->ptr); }
+		ConstIterator &operator++() { this->ptr++; return *this; }
+		ConstIterator &operator--() { this->ptr--; return *this; }
+		
+		ConstIterator operator+(int val) const { return Iterator(this->ptr + val); }
+		ConstIterator operator-(int val) const { return Iterator(this->ptr - val); }
+
+		auto operator<=>(const ConstIterator& other) const { return this->ptr <=> other.ptr; }
+		bool operator!=(const ConstIterator& other) const { return this->ptr != other.ptr; }
 
 	};
 
@@ -74,11 +93,17 @@ public:
 
 	// Iterators
 
-	Iterator begin() const { return Iterator(this->data, 0); }
-	Iterator end()   const { return Iterator(this->data, this->l_size); }
-	
-	Iterator rbegin() const { return Iterator(this->data, this->l_size-1); }
-	Iterator rend()   const { return Iterator(this->data, -1); }
+	Iterator begin() { return Iterator(this->data); }
+	Iterator end() { return Iterator(this->data + N); }
+
+	ConstIterator cbegin() { return ConstIterator(this->data); }
+	ConstIterator cend() { return ConstIterator(this->data + N); }
+
+	Iterator rbegin() { return Iterator(this->data + N-1); }
+	Iterator rend() { return Iterator(this->data - 1); }
+
+	ConstIterator crbegin() { return ConstIterator(this->data + N-1); }
+	ConstIterator crend() { return ConstIterator(this->data - 1); }
 
 
 	// Capacity

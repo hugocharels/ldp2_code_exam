@@ -17,6 +17,18 @@ int main() {
 	uwu.print();
 	std::cout << uwu.size() << std::endl;
 
+	// iterator
+
+
+	for ( const auto &i : uwu ) {
+		std::cout << i << " ";
+	} std::cout << std::endl;
+
+
+	for ( auto it = uwu.cbegin(); it != uwu.cend(); ++it ) {
+		std::cout << *it << " ";
+	} std::cout << std::endl;
+
 	return 0;
 }
 
