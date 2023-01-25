@@ -83,7 +83,9 @@ shared_ptr<Eatable> Eatable::makeEatable(std::initializer_list<Food> foods) {
 
 
 int main() {
-
 	std::cout << Eatable::makeEatable({Eatable::lasagna, Eatable::peperroni})->description() << std::endl;
+	
+	std::cout << make_shared<Mozza>(make_shared<Pasta>())->description() << std::endl;
+
 	return 0;
 }
