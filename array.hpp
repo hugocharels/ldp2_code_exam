@@ -50,8 +50,8 @@ class Array {
 		ConstIterator &operator++() { this->ptr++; return *this; }
 		ConstIterator &operator--() { this->ptr--; return *this; }
 		
-		ConstIterator operator+(int val) const { return Iterator(this->ptr + val); }
-		ConstIterator operator-(int val) const { return Iterator(this->ptr - val); }
+		ConstIterator operator+(int val) const { return ConstIterator(this->ptr + val); }
+		ConstIterator operator-(int val) const { return ConstIterator(this->ptr - val); }
 
 		auto operator<=>(const ConstIterator& other) const { return this->ptr <=> other.ptr; }
 		bool operator!=(const ConstIterator& other) const { return this->ptr != other.ptr; }
