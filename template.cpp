@@ -10,7 +10,7 @@ T add(const T a, const T b) {
 	return a + b;
 }
 
-template<>
+template<>	// spécialisation
 Number add(const Number a, const Number b) {
 	return Number{a.x + b.x}; 
 }
@@ -22,7 +22,7 @@ T doSomething(T a, T b, F func) {
 }
 
 template<typename T>
-struct Fonct {
+struct Fonct {	// foncteur
 	T operator()(const T a, const T b) { return a + b; }
 };
 
@@ -34,6 +34,12 @@ int main() {
 
 	std::cout << doSomething(1, 2, [](const int a, const int b) { return a + b; }) << std::endl;
 	std::cout << doSomething(1, 2, Fonct<int>{}) << std::endl;
+
+	// affiche
+	// 7
+	// 7
+	// 3
+	// 3
 
 	return 0;
 }
