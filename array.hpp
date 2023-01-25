@@ -61,13 +61,13 @@ public:
 	// Element access
 
 	T& at(int i) { 
-		if ( i < 0 or i >= this->l_size ) { perror("Bad index in Array"); exit(1); } 
+		if ( i < 0 or i >= N ) { perror("Bad index in Array"); exit(1); } 
 		return data[i];
 	}
 	T& operator[](int i) { return data[i]; }
 
 	const T& at(int i) const { 
-		if ( i < 0 or i >= this->l_size ) { perror("Bad index in Array"); exit(1); } 
+		if ( i < 0 or i >= N ) { perror("Bad index in Array"); exit(1); } 
 		return data[i];
 	}
 	const T& operator[](int i) const { return data[i]; }
