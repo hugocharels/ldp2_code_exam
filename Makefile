@@ -29,6 +29,9 @@ array: array.cpp array.hpp
 template: template.cpp
 	${COMPILER} -o template template.cpp ${FLAGS}
 
+singleton: singleton.cpp
+	${COMPILER} -o singleton singleton.cpp ${FLAGS}
+
 
 rm:
 	rm range virtual virtual_heritance lifetime vector array template
