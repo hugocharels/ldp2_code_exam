@@ -16,8 +16,6 @@ class Sum : public Evaluable{
 	Evaluable* e2;
 
 	void copy(const Sum& other) {
-		std::cout << e1 << " " << e2 << std::endl;
-		delete e1; delete e2;
 		e1 = other.createCopyE1();
 		e2 = other.createCopyE2();
 	}
@@ -45,7 +43,6 @@ class Product : public Evaluable{
 	Evaluable* e2;
 
 	void copy(const Product& other) {
-		delete e1; delete e2;
 		e1 = other.createCopyE1();
 		e2 = other.createCopyE2();
 	}
