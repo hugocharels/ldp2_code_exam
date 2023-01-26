@@ -17,7 +17,6 @@ public:
 
 };
 
-
 // Meal
 class Lasagna: public Eatable {
 public: 
@@ -30,7 +29,6 @@ public:
 	virtual string description() override { return "Pasta " + to_string(this->cost()) + "$"; }
 	float cost() override { return 4; }
 };
-
 
 // Topings
 class Toping: public Eatable {
@@ -54,7 +52,6 @@ public:
 	string description() override { return this->base_meal->description() + " Peperroni " + to_string(this->cost()) + "$"; }
 };
 
-
 shared_ptr<Eatable> Eatable::makeEatable(std::initializer_list<Food> foods) {
 	shared_ptr<Eatable> meal;	
 	auto item = foods.begin();
@@ -73,7 +70,6 @@ shared_ptr<Eatable> Eatable::makeEatable(std::initializer_list<Food> foods) {
 	}
 	return meal;
 }
-
 
 int main() {
 	std::cout << Eatable::makeEatable({Eatable::lasagna, Eatable::peperroni})->description() << std::endl;
