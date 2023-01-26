@@ -16,7 +16,6 @@ class Sum : public Evaluable{
 		e2 = other.createCopyE2();
 	}
 	void move(Sum& other) {
-		delete e1; delete e2;
 		e1 = other.e1; e2 = other.e2;
 		other.e1 = nullptr; other.e2 = nullptr;	
 	}
@@ -26,7 +25,7 @@ public:
 	Sum(const Sum& other) { this->copy(other); }
 	Sum(Sum&& other) { this->move(other); }
 	void operator=(const Sum& other) { delete e1; delete e2; this->copy(other); }
-	void operator=(Sum&& other) { this->move(other); }
+	void operator=(Sum&& other) { delete e1; delete e2; this->move(other); }
 	virtual double evaluate(double x) { return e1->evaluate(x) + e2->evaluate(x); }
 	virtual ~Sum() { delete e1; delete e2; }
 	Sum* createCopy() { return new Sum(e1->createCopy(), e2->createCopy()); }
@@ -43,7 +42,6 @@ class Product : public Evaluable{
 		e2 = other.createCopyE2();
 	}
 	void move(Product& other) {
-		delete e1; delete e2;
 		e1 = other.e1; e2 = other.e2;
 		other.e1 = nullptr; other.e2 = nullptr;	
 	}
@@ -53,7 +51,7 @@ public:
 	Product(const Product& other) { this->copy(other); }
 	Product(Product&& other) { this->move(other); }
 	void operator=(const Product& other) { delete e1; delete e2; this->copy(other); }
-	void operator=(Product&& other) { this->move(other); }
+	void operator=(Product&& other) { delete e1; delete e2; this->move(other); }
 	virtual double evaluate(double x) { return e1->evaluate(x) * e2->evaluate(x); }
 	virtual ~Product() { delete e1; delete e2; }
 	Product* createCopy() { return new Product(e1->createCopy(), e2->createCopy()); }
