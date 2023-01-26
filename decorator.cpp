@@ -6,18 +6,11 @@
 
 using std::string, std::to_string, std::shared_ptr, std::make_shared;
 
-
-/* class Lasagna; */
-/* class Pasta; */
-/* class Mozza; */
-/* class Peperroni; */
-
 // Eatable
 class Eatable {
 public:
 	virtual string description()=0;	
 	virtual float cost()=0;
-
 // Usine
 	enum Food { lasagna, pasta, mozza, peperroni };
 	static shared_ptr<Eatable> makeEatable(std::initializer_list<Food> foods); 
@@ -84,8 +77,6 @@ shared_ptr<Eatable> Eatable::makeEatable(std::initializer_list<Food> foods) {
 
 int main() {
 	std::cout << Eatable::makeEatable({Eatable::lasagna, Eatable::peperroni})->description() << std::endl;
-	
 	std::cout << make_shared<Mozza>(make_shared<Pasta>())->description() << std::endl;
-
 	return 0;
 }
