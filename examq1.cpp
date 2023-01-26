@@ -15,14 +15,14 @@ class Rectangle {
 };
 
 int main(){
-    Rectangle r{2, 10};
+	Rectangle r{2, 10};
 	std::cout << r.area() << std::endl;
-    pair<double, double> p{5, 10};
-    Rectangle r2{p};
-    string s{r};
+	pair<double, double> p{5, 10};
+	Rectangle r2{p};
+	string s{r};
 	std::cout << s << std::endl;
-    p = r;
+	p = r;
 	std::cout << p.first << std::endl;
-    return 0;
+	return 0;
 }
 
